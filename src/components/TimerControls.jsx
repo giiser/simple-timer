@@ -4,6 +4,11 @@ const TimerControls = ({timerRef, setTime, isRunning, setIsRunning}) => {
 
     const startButtonRef = useRef(null);
 
+    useEffect(() => {
+        if (startButtonRef.current) {
+            startButtonRef.current.focus();
+        }
+    },[]);
 
     const toggleTimer = () => {
         if (isRunning) {
@@ -25,13 +30,10 @@ const TimerControls = ({timerRef, setTime, isRunning, setIsRunning}) => {
         setIsRunning(false);
         setTime(0);
         timerRef.current = null;
+        localStorage.removeItem("time");
     }
 
-    useEffect(() => {
-        if (startButtonRef.current) {
-            startButtonRef.current.focus();
-        }
-    },[]);
+
 
     return (
         <>
